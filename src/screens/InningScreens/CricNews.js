@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Image, Text, View, StyleSheet, TouchableOpacity, ToastAndroid, ActivityIndicator, Dimensions, FlatList } from 'react-native';
 import axios from 'axios';
 import { Ionicons } from '@expo/vector-icons';
+import { Foundation } from '@expo/vector-icons';
 import { back, container1, loader, head1, load_text } from "../../globals/style";
 import { hr101 } from '../../globals/matchStyle';
 
@@ -22,6 +23,7 @@ const CricNews = ({ navigation }) => {
             );
             set_myData(response.data.memes);
             setIsLoading(false);
+            ShowAlertWithDelay();
 
             console.log("News :", response.status);
         }
@@ -31,7 +33,7 @@ const CricNews = ({ navigation }) => {
     }
     useEffect(() => {
         getNews();
-        ShowAlertWithDelay();
+
     }, []);
 
 
@@ -54,7 +56,7 @@ const CricNews = ({ navigation }) => {
                         <Ionicons name="arrow-back-circle-outline" size={40} color="#9BB1FF" />
                     </TouchableOpacity>
                     <View>
-                        <Text style={head1} >Top News In Cricket from Reddit</Text>
+                        <Text style={head1} >Top News</Text>
                         <View>
                             <View style={hr101} />
                             <FlatList
@@ -62,12 +64,12 @@ const CricNews = ({ navigation }) => {
                                 data={myData}
                                 renderItem={({ item }) => {
                                     return (
-                                        <View>
-                                            <View>
+                                        <View style={styles.news}>
+                                            <View style={styles.newsi}>
                                                 <Image resizeMode='contain' style={styles.news_img} source={{ uri: item.url }} />
                                             </View>
+                                            <Text style={styles.head1} ><Foundation name="arrow-up" size={28} color="#EC1C24" />  {item.ups} upvotes in reddit</Text>
                                             <Text style={styles.head} >{item.title}</Text>
-                                            <View style={styles.hr100} />
                                         </View>
                                     )
                                 }}
@@ -94,23 +96,59 @@ const styles = StyleSheet.create({
         marginTop: '4%',
         padding: '2%'
     },
+    news: {
+        backgroundColor: '#22223b',
+        marginVertical: '4%',
+        borderRadius: 20,
+        padding: '2%'
+    },
+    newsi: {
+        backgroundColor: '#22223b',
+        marginVertical: '2%',
+        borderRadius: 20,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    container1: {
+        backgroundColor: 'black',
+        textAlign: 'left',
+        marginTop: '1%',
+        padding: '2%'
+    },
     head: {
         color: 'white',
-        textAlign: 'center',
-        marginVertical: '4%',
+        textAlign: 'left',
+        marginLeft: '2%',
+        fontSize: 18,
+        fontWeight: '400',
+        marginBottom: '4%',
+    },
+    head1: {
+        color: 'white',
+        textAlign: 'left',
+        marginLeft: '2%',
+        marginBottom: '1%',
         fontSize: 20,
-        fontWeight: '400'
+        fontWeight: '500'
     },
     news_img: {
-        height: deviceWidth,
-        width: deviceWidth,
+        height: deviceWidth - 20,
+        width: deviceWidth - 20,
         marginVertical: '2%',
+        borderRadius: 20,
+        overflow: 'hidden',
     },
     hr100: {
         width: '100%',
         borderBottomColor: "#E2FDFF",
         borderBottomWidth: 0.5,
-        // marginVertical: 4,
+        marginTop: 4,
+    },
+    hr101: {
+        width: '100%',
+        borderBottomColor: "#E2FDFF",
+        borderBottomWidth: 1,
+        marginBottom: '4%',
     },
 
 })

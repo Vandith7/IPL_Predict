@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { TouchableOpacity, View, Text, ActivityIndicator, FlatList, ScrollView, ToastAndroid } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
+import moment from 'moment/moment';
 import { back, container1, loader, head1 } from "../../globals/style";
-import { container, result, teams, teams1, status1, league, league2, match, hr100, hr101, load_text, card, containerb, btn, btn1 } from '../../globals/matchStyle'
+import { container, result, teams, teams1, status1, league, league2, match, hr100, hr101, load_text, card, containerb, btn, btn1, teams_yet } from '../../globals/matchStyle'
 
 const LiveScore = ({ navigation }) => {
     var date = (new Date().getDate()) - 1;
@@ -101,33 +102,17 @@ const LiveScore = ({ navigation }) => {
                                                 {item.Events.map((event) => (
                                                     <View style={match}>
                                                         <Text style={league2}>{event.EtTx}-{event.ErnInf}</Text>
+                                                        <Text style={league2}>{moment(event.Esd, "YYYYMMDDhmss a").format("LLLL")}</Text>
                                                         <Text style={status1}>{event.EpsL}</Text>
                                                         <View style={hr100} />
                                                         <Text style={teams1}>{event.T1[0].Nm} </Text>
                                                         <Text style={teams}>
-
-                                                            {event.Tr1C2 !== undefined && event.Tr1CW2 !== undefined && event.Tr1CO2 !== undefined ? (
-                                                                <>
-                                                                    <Text style={teams}>{event.Tr1C1}-{event.Tr1CW1} ({event.Tr1CO1} Ovs){"\n"}&{"\n"}{event.Tr1C2}-{event.Tr1CW2} ({event.Tr1CO2} Ovs)</Text>
-                                                                </>
-                                                            ) : (
-                                                                <Text>
-                                                                    {event.Tr1C1}-{event.Tr1CW1} ({event.Tr1CO1} Ovs)
-                                                                </Text>
-                                                            )}
+                                                            {event.Tr1C2 !== undefined && event.Tr1CW2 !== undefined && event.Tr1CO2 !== undefined ? (<Text style={teams}>{event.Tr1C1}-{event.Tr1CW1} ({event.Tr1CO1} Ovs){"\n"}&{"\n"}{event.Tr1C2}-{event.Tr1CW2} ({event.Tr1CO2} Ovs)</Text>) : event.Tr1C1 !== undefined && event.Tr1CW1 !== undefined && event.Tr1CO1 !== undefined ? (<Text>{event.Tr1C1}-{event.Tr1CW1} ({event.Tr1CO1} Ovs)</Text>) : (<Text style={teams_yet}>Yet to bat</Text>)}
                                                         </Text>
                                                         <View style={hr100} />
                                                         <Text style={teams1}>{event.T2[0].Nm} </Text>
                                                         <Text style={teams}>
-                                                            {event.Tr2C2 !== undefined && event.Tr2CW2 !== undefined && event.Tr2CO2 !== undefined ? (
-                                                                <>
-                                                                    <Text style={teams}>{event.Tr2C1}-{event.Tr2CW1} ({event.Tr2CO1} Ovs){"\n"}&{"\n"}{event.Tr2C2}-{event.Tr2CW2} ({event.Tr2CO2} Ovs)</Text>
-                                                                </>
-                                                            ) : (
-                                                                <Text>
-                                                                    {event.Tr2C1}-{event.Tr2CW1} ({event.Tr2CO1} Ovs)
-                                                                </Text>
-                                                            )}
+                                                            {event.Tr2C2 !== undefined && event.Tr2CW2 !== undefined && event.Tr2CO2 !== undefined ? (<Text style={teams}>{event.Tr2C1}-{event.Tr2CW1} ({event.Tr2CO1} Ovs){"\n"}&{"\n"}{event.Tr2C2}-{event.Tr2CW2} ({event.Tr2CO2} Ovs)</Text>) : event.Tr2C1 !== undefined && event.Tr2CW1 !== undefined && event.Tr2CO1 !== undefined ? (<Text>{event.Tr2C1}-{event.Tr2CW1} ({event.Tr2CO1} Ovs)</Text>) : (<Text style={teams_yet}>Yet to bat</Text>)}
                                                         </Text>
                                                         <View style={hr100} />
                                                         <Text style={result}>{event.ECo}</Text>

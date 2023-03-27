@@ -45,13 +45,21 @@ module.exports = {
     },
     teams: {
         color: '#BFD7FF',
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: 'bold',
-        marginLeft: '2%'
+        marginLeft: '2%',
+        marginBottom: '2%'
+    },
+    teams_yet: {
+        color: '#89A6FB',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginLeft: '2%',
+        marginBottom: '2%'
     },
     teams1: {
         color: '#E2FDFF',
-        fontSize: 28,
+        fontSize: 26,
         fontWeight: 'bold',
         marginLeft: '2%'
     },
@@ -62,7 +70,7 @@ module.exports = {
         marginLeft: '2%'
     },
     league: {
-        fontSize: 32,
+        fontSize: 30,
         fontWeight: 'bold',
         color: '#E2FDFF',
         marginLeft: '2%'

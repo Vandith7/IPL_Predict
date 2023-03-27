@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { TouchableOpacity, View, Text, ActivityIndicator, FlatList, ScrollView, ToastAndroid } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
+import moment from 'moment/moment';
 import { back, container1, loader, head1 } from "../../globals/style";
 import { container, result, teams, teams1, status1, league, league2, match, hr100, hr101, load_text, card, containerb, btn, btn1 } from '../../globals/matchStyle'
 
@@ -101,6 +102,7 @@ const LiveScore = ({ navigation }) => {
                                                 {item.Events.map((event) => (
                                                     <View style={match}>
                                                         <Text style={league2}>{event.EtTx}-{event.ErnInf}</Text>
+                                                        <Text style={league2}>{moment(event.Esd, "YYYYMMDDhmss a").format("LLLL")}</Text>
                                                         <Text style={status1}>{event.EpsL}</Text>
                                                         <View style={hr100} />
                                                         <Text style={teams1}>{event.T1[0].Nm} </Text>

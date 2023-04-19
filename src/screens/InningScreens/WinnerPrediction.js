@@ -40,7 +40,7 @@ const WinnerPrediction = ({ navigation }) => {
     );
 
   const Predict_w = () => {
-    if (!wbatting_team || !wbowling_team || !ttotal_runs || !tscore || !twickets || !tovers) {
+    if (!wbatting_team || !wbowling_team || !ttotal_runs || !tscore || !twickets || !tovers || twickets > 10 || tovers > 20) {
       showAlert();
     }
     else {

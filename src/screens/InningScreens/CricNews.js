@@ -66,9 +66,9 @@ const CricNews = ({ navigation }) => {
                                     return (
                                         <View style={styles.news}>
                                             <View style={styles.newsi}>
-                                                <Image resizeMode='contain' style={styles.news_img} source={{ uri: item.url }} />
+                                                <Image resizeMethod='scale' resizeMode='contain' style={styles.news_img} source={{ uri: item.url }} />
                                             </View>
-                                            <Text style={styles.head1} ><Foundation name="arrow-up" size={28} color="#EC1C24" />  {item.ups} upvotes in reddit</Text>
+                                            <Text style={styles.head1} ><Foundation name="arrow-up" size={30} color="#EC1C24" />  {item.ups} upvotes in reddit</Text>
                                             <Text style={styles.head} >{item.title}</Text>
                                         </View>
                                     )
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         padding: '2%'
     },
     newsi: {
-        backgroundColor: '#22223b',
+        backgroundColor: '#16113f',
         marginVertical: '2%',
         borderRadius: 20,
         alignItems: "center",
@@ -132,10 +132,10 @@ const styles = StyleSheet.create({
         fontWeight: '500'
     },
     news_img: {
-        height: deviceWidth - 20,
-        width: deviceWidth - 20,
+        height: deviceWidth - 25,
+        width: deviceWidth - 25,
         marginVertical: '2%',
-        borderRadius: 20,
+        // borderRadius: 20,
         overflow: 'hidden',
     },
     hr100: {

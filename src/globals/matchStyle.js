@@ -27,6 +27,21 @@ module.exports = {
         width: '100%',
         paddingBottom: 8
     },
+    containera: {
+        width: '100%',
+        marginTop: '4%',
+        marginBottom: '6%',
+        flex: 1,
+    },
+    head11: {
+        fontSize: 35,
+        color: "white",
+        textAlign: "left",
+        marginBottom: 10,
+        fontWeight: 'bold',
+        width: "90%",
+        marginLeft: '6%'
+    },
     container: {
         flex: 1,
         width: "100%",

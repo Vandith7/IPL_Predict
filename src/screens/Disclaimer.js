@@ -19,11 +19,12 @@ const Disclaimer = ({ navigation }) => {
       <Text style={styles.title1}>IPL Ethos</Text>
       <ScrollView persistentScrollbar={true} style={styles.text}>
         <Text style={styles.title}>This app was made as a project for my final year and is totally for Entertainment Purpose!!</Text>
-        <Text style={styles.title}>In the prediction part app uses Machine Learning model to predict Final Score for First Innings and Win Probability for Second Innings!!</Text>
+        <Text style={styles.title}>In the prediction part of this app uses Machine Learning model to predict Final Score for First Innings and Win Probability for Second Innings!!</Text>
         <Text style={styles.title}>The Machine Learning model is based on the datasets of model until year 2021 therefore you won't find new teams in the team selection list. </Text>
         <Text style={styles.title}>The accuracy of model is 82%</Text>
         <Text style={styles.title}>However, Cricket is an unpredictable sports and is full of surprises and twists, predicting the outcome with 100% Accuracy is Impossible</Text>
         <Text style={styles.title}>This app should only be used as medium for Entertainment and not for other purposes like betting or gambling!!</Text>
+        <Text style={styles.title}>Sport illustrations logo on next page by Storyset ("https://storyset.com/sport")</Text>
         <Text style={styles.title}>Please Enjoy your time on this app and press the button below to Continue!!</Text>
         <Text style={styles.title}>   </Text>
 

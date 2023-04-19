@@ -41,7 +41,7 @@ const ScorePrediction = ({ navigation }) => {
   const showAlert = () =>
     Alert.alert(
       'Oops',
-      'Please make sure you have entered all the details!!',
+      'Please make sure you have entered all the details correctly!!',
       [
         {
           cancelable: true,
@@ -52,7 +52,7 @@ const ScorePrediction = ({ navigation }) => {
     );
 
   const Predict_s = () => {
-    if (!sbatting_team || !sbowling_team || !tovers || !truns || !t_wickets || !t_runs5 || !t_wickets5) {
+    if (!sbatting_team || !sbowling_team || !tovers || !truns || !t_wickets || !t_runs5 || !t_wickets5 || tovers > 20 || truns > 720 || t_wickets > 10 || t_runs5 > truns || t_wickets5 > t_wickets) {
       showAlert();
     }
     else {

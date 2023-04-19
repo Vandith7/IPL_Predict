@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { TouchableOpacity, View, Text, ActivityIndicator, FlatList, ScrollView, RefreshControl, ToastAndroid } from 'react-native'
+import { TouchableOpacity, View, Text, ActivityIndicator, FlatList, ScrollView, RefreshControl } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 import moment from 'moment/moment';
 import { back, container1, loader, head1 } from "../../globals/style";
-import { container, result, teams, teams1, status1, league, league2, match, hr100, hr101, load_text, card, containerb, btn, btn1, teams_yet } from '../../globals/matchStyle'
+import { container, containera, head11, result, teams, teams1, status1, league, league2, match, hr100, hr101, load_text, card, containerb, btn, btn1, teams_yet } from '../../globals/matchStyle'
 
 const LiveScore = ({ navigation }) => {
     const [myData, set_myData] = useState([]);
@@ -32,11 +32,7 @@ const LiveScore = ({ navigation }) => {
             );
             setIsLoading(false);
             set_myData(response.data.Stages);
-            if (response.data.Stages[0] != undefined) {
-                console.log("Live Score :", response.status);
-            } else {
-                ToastAndroid.show('No matches available', ToastAndroid.LONG)
-            }
+            console.log("Live Score :", response.status);
         }
         catch (error) {
             console.log(error);
@@ -58,7 +54,39 @@ const LiveScore = ({ navigation }) => {
             </TouchableOpacity><ActivityIndicator style={loader} size={'large'} color="#5465FF" />
                 <Text style={load_text}>Please wait while we are getting scores for you!!</Text>
             </View>)
-                : (
+                : myData[0] === undefined ? (
+                    <><TouchableOpacity onPress={() => navigation.navigate('WelcomePage')} style={back}>
+                        <Ionicons name="arrow-back-circle-outline" size={40} color="#9BB1FF" />
+                    </TouchableOpacity>
+                        <View style={containera}>
+                            <Text style={head11} >Live Scores Of Top Events</Text>
+                            <View style={containerb}>
+                                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} >
+                                    <TouchableOpacity
+                                        onPress={getScore}
+                                        style={card}>
+                                        <Text style={btn1}>LIVE</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={() => navigation.navigate('live')}
+                                        style={card}>
+                                        <Text style={btn}>Today</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={() => navigation.navigate('yesterday')}
+                                        style={card}>
+                                        <Text style={btn}>Yesterday</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={() => navigation.navigate('tomorrow')}
+                                        style={card}>
+                                        <Text style={btn}>Tomorrow</Text>
+                                    </TouchableOpacity>
+                                </ScrollView>
+                            </View>
+                            <Text style={load_text}>No LIVE matches available</Text>
+                        </View>
+                    </>) : (
                     <>
                         <TouchableOpacity onPress={() => navigation.navigate('WelcomePage')} style={back}>
                             <Ionicons name="arrow-back-circle-outline" size={40} color="#9BB1FF" />
@@ -113,8 +141,8 @@ const LiveScore = ({ navigation }) => {
                                             <View>
                                                 {item.Events.map((event) => (
                                                     <View style={match}>
-                                                        <Text style={league2}>{event.EtTx}-{event.ErnInf}</Text>
                                                         <Text style={league2}>{moment(event.Esd, "YYYYMMDDhmss a").format("LLLL")}</Text>
+                                                        <Text style={league2}>{event.EtTx}-{event.ErnInf}</Text>
                                                         <Text style={status1}>{event.EpsL}</Text>
                                                         <View style={hr100} />
                                                         <Text style={teams1}>{event.T1[0].Nm} </Text>
